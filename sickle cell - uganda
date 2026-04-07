@@ -2073,6 +2073,29 @@ img { max-width: 100%; }
 </div><!-- end app-shell -->
 
 <script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD9QJeuIBqy7R-GS5rqJN4MbF05WaXZv4Y",
+    authDomain: "my-sickle-track-app.firebaseapp.com",
+    projectId: "my-sickle-track-app",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // TEST CONNECTION
+  async function testConnection() {
+    await addDoc(collection(db, "patients"), {
+      name: "Test Patient",
+      status: "Working"
+    });
+    console.log("Firebase connected successfully!");
+  }
+
+  testConnection();
 // =============================================
 //  APP STATE
 // =============================================
